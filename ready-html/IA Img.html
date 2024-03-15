@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css\image.css">
+    <title>Photo Gallery</title>
+</head>
+<body onload="randomPhotoOnLoad()">
+
+<div class="header_i">
+    <header>
+        <span>GraphicArts |</span>
+        <a href="image.html" id="about">Art all</a>
+        <a href="index.html" id="home">Home</a>
+        <a href="#" id="car">Car</a>
+        <a href="https://dreamstudio.ai/generate" id="IA">create photo</a>
+        <a href="#" id="nature">Nature</a>
+        <a href="../pythonweb/templates/form.html" id="log">Log in</a>
+    </header>
+</div>
+
+<div class="gallery" id="gallery">
+</div>
+
+<div class="overlay" id="overlay" onclick="closeOverlay()">
+    <span class="close" title="Закрити" onclick="closeOverlay()">&times;</span>
+    <img id="overlayImage" src="" alt="Зображення">
+</div>
+
+<script>
+    function shuffleGallery() {
+        var gallery = document.querySelector('.gallery');
+        for (var i = gallery.children.length; i >= 0; i--) {
+            gallery.appendChild(gallery.children[Math.random() * i | 0]);
+        }
+    }
+
+    function openOverlay(imageSrc) {
+        document.getElementById('overlayImage').src = imageSrc;
+        document.getElementById('overlay').style.display = 'flex';
+    }
+
+    function closeOverlay() {
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function randomPhotoOnLoad() {
+        var galleryDiv = document.getElementById('gallery');
+        var photoFolder = 'img/IA/'; // Змініть це на шлях до теки з фотографіями
+        var numPhotos = 23; // Змініть це на кількість фотографій у вашій теки
+
+        for (var i = 1; i <= numPhotos; i++) {
+            var photoDiv = document.createElement('div');
+            photoDiv.classList.add('photo');
+            var img = document.createElement('img');
+            img.src = photoFolder + i + '.png';
+            img.alt = 'Фото ' + i;
+            img.onclick = function() {
+                openOverlay(this.src);
+            };
+            photoDiv.appendChild(img);
+            galleryDiv.appendChild(photoDiv);
+        }
+
+        shuffleGallery();
+    }
+</script>
+
+</body>
+</html>

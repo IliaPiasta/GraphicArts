@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+
+/* header */
+
+@keyframes moveDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  header {
+      text-align: left;
+      padding: 1%;
+      opacity: 0;
+      animation: moveDown 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  }
+  
+  header span {
+      color: #f8f8f8;
+      margin-left: 1%;
+  }
+  
+  .header_i header a {
+      color: #ffffff;
+      margin-left: 1%;
+      text-decoration: none;
+      transition: color 0.3s ease; /* Додано анімацію для зміни кольору */
+  }
+  
+  .header_i header a#log {
+      float: right;
+      margin-right: 1%;
+  }
+  
+  /* Зміна кольору при наведенні */
+  .header_i header a:hover {
+      color: #ffa500;
+  }
+  
+  @media only screen and (max-width: 768px) {
+      header {
+          text-align: left;
+      }
+  
+      header span,
+      .header_i header a {
+          margin: 1%;
+      }
+  
+      .header_i header a#log {
+          float: none;
+          margin-right: 0;
+          margin-top: 1%;
+      }
+  }
+
+/* end header */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+
+.photo {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 8px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
